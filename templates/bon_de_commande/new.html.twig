@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mt-4">
+        <div class="card p-4 shadow-lg rounded">
+            <h1 class="mb-4">Bon De Commande</h1>
+            {{ form_start(form) }}
+
+            <!-- Champs Date et Status cachés -->
+            <div style="display: none;">
+                {{ form_widget(form.date) }}
+            </div>
+            <div style="display: none;">
+                {{ form_widget(form.status) }}
+            </div>
+
+            <h3>Lignes de commande</h3>
+            <ul class="ligne-commandes" data-prototype="{{ form_widget(form.ligneCommandes.vars.prototype)|e('html_attr') }}">
+                {% for ligneCommande in form.ligneCommandes %}
+                    <li>
+                        {{ form_row(ligneCommande.productName) }}
+                        {{ form_row(ligneCommande.quantity) }}
+                        {{ form_row(ligneCommande.price) }}
+                    </li>
+                {% endfor %}
+            </ul>
+
+            <button type="button" class="add-ligne-commande btn btn-info" data-collection-holder-class="ligne-commandes">Ajouter une ligne</button>
+            <button class="btn btn-success" type="submit">Enregistrer</button>
+
+            {{ form_end(form) }}
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const addLigneCommandeButton = document.querySelector('.add-ligne-commande');
+                    const collectionHolder = document.querySelector('.' + addLigneCommandeButton.dataset.collectionHolderClass);
+
+                    // Ajouter une nouvelle ligne
+                    addLigneCommandeButton.addEventListener('click', function() {
+                        const prototype = collectionHolder.dataset.prototype;
+                        const index = collectionHolder.children.length;
+
+                        // Remplacer '__name__' par l'index
+                        const newForm = prototype.replace(/__name__/g, index);
+                        const newFormItem = document.createElement('li');
+                        newFormItem.innerHTML = newForm;
+                        collectionHolder.appendChild(newFormItem);
+                    });
+                });
+            </script>
+        </div>
+    </div>
+{% endblock %}

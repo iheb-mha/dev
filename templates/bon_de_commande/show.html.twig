@@ -1,0 +1,38 @@
+{% block body %}
+    <div class="container mt-4">
+        <h1 class=" mb-4">Bon De Commande</h1>
+        <div class="card p-4 shadow-lg rounded">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>date</th>
+                        <td>{{ bon_de_commande.date|date('d/m/Y') }}</td>
+                    </tr>
+                    <tr>
+                        <th>status</th>
+                        <td>{{ bon_de_commande.status }}</td>
+                    </tr>
+                    <tr>
+                        <th>Medicaments</th>
+                        <td>
+                            {% for medicament in bon_de_commande.medicaments %}
+                                {{ medicament.nom }}<br>
+                            {% else %}
+                                Aucun médicament trouvé.
+                            {% endfor %}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="{{ path('app_bon_de_commande_index') }}" class="btn btn-outline-primary">Back to list</a>
+            <a href="{{ path('app_bon_de_commande_edit', {'id': bon_de_commande.id}) }}" class="btn btn-warning btn-sm">Edit</a>
+        </div>
+
+        <div class="mt-4 text-center ">
+            {{ include('bon_de_commande/_delete_form.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

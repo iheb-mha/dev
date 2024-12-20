@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Ordonnance{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1 class="mb-4">Edit Ordonnance</h1>
+        {{ include('ordonnance/_form.html.twig', {'button_label': 'Update'}) }}
+        <a href="{{ path('app_ordonnance_index') }}" class="btn btn-secondary mt-2">Back to list</a>
+        {{ include('ordonnance/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

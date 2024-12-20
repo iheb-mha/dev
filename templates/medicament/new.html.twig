@@ -1,0 +1,104 @@
+
+
+{% extends 'base.html.twig' %}
+
+
+
+{% block body %}
+<div class="header bg-primary py-5">
+    <div class="container">
+        <div class="header-body">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-8">
+                    <h1 class="text-white mb-0">Add New Medicament</h1>
+                </div>
+                <div class="col-lg-6 col-md-4 text-md-right mt-3 mt-md-0">
+                    <a href="{{ path('medicament_index') }}" class="btn btn-sm btn-light">Back to list</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">Medicament Information</h3>
+                </div>
+                <div class="card-body">
+                    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+                    <div class="form-group">
+                        {{ form_label(form.nom, null, {'label_attr': {'class': 'form-control-label'}}) }}
+                        {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.nom) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.prix, null, {'label_attr': {'class': 'form-control-label'}}) }}
+                        {{ form_widget(form.prix, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.prix) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.qte_stock, null, {'label_attr': {'class': 'form-control-label'}}) }}
+                        {{ form_widget(form.qte_stock, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.qte_stock) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.type_med, null, {'label_attr': {'class': 'form-control-label'}}) }}
+                        {{ form_widget(form.type_med, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.type_med) }}
+                    </div>
+
+                    <div class="form-group form-check">
+                        {{ form_widget(form.sur_ordonnance, {'attr': {'class': 'form-check-input'}}) }}
+                        {{ form_label(form.sur_ordonnance, null, {'label_attr': {'class': 'form-check-label'}}) }}
+                        {{ form_errors(form.sur_ordonnance) }}
+                    </div>
+
+                    <div class="form-group">
+                        {{ form_label(form.photo, null, {'label_attr': {'class': 'form-control-label'}}) }}
+                        <div class="custom-file">
+                            {{ form_widget(form.photo, {'attr': {'class': 'custom-file-input'}}) }}
+                            <label class="custom-file-label" for="{{ form.photo.vars.id }}">Choose file</label>
+                        </div>
+                        {{ form_errors(form.photo) }}
+                    </div>
+                    </div>
+
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+
+                    {{ form_end(form) }}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+    <script>
+        // JavaScript to show the image preview when the user selects a new image
+        document.getElementById('custom-file').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.getElementById('image-preview');
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';  // Show the image preview
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Medecin{% endblock %}
+
+{% block body %}
+    <h1 class="mb-4">Medecin</h1>
+    <div class="card p-4 shadow-lg rounded">
+        <table class="table table-striped table-bordered">
+            <thead >
+            <tr>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>NumTel</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for medecin in medecins %}
+                <tr>
+                    <td>{{ medecin.nom }}</td>
+                    <td>{{ medecin.email }}</td>
+                    <td>{{ medecin.numTel }}</td>
+                    <td>
+                        <a href="{{ path('app_medecin_show', {'id': medecin.id}) }}" class="btn btn-primary btn-sm">Show</a>
+                        <a href="{{ path('app_medecin_edit', {'id': medecin.id}) }}" class="btn btn-warning btn-sm">Edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5" class="text-center">No records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <a href="{{ path('app_medecin_new') }}" class="btn btn-success mt-2">Create new</a>
+{% endblock %}

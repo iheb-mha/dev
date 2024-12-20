@@ -1,0 +1,23 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+home:
+    path: /
+    controller: App\Controller\HomeController::index
+medicament:
+    path: /medicament
+    controller: App\Controller\MedicamentController::index
+medecin:
+    path: /medecin
+    controller: App\Controller\MedecinController::index
+ordonnance:
+    path: /ordonnance
+    controller: App\Controller\OrdonnanceController::index
+user:
+    path: /user
+    controller: App\Controller\UserController::index
+bon_de_commande:
+    path: /bon_de_commande
+    controller: App\Controller\BonDeCommandeController::index

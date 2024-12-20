@@ -1,0 +1,16 @@
+    {% extends 'base.html.twig' %}
+
+{% block title %}New Medecin{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="mb-4">Create New Medecin</h1>
+
+        <div class="mb-3">
+            {{ include('medecin/_form.html.twig') }}
+        </div>
+
+        <a href="{{ path('app_medecin_index') }}" class="btn btn-secondary">Back to List</a>
+
+    </div>
+{% endblock %}

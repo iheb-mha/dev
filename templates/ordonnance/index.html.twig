@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ordonnance{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1 class="mb-4">Ordonnance </h1>
+        <div class="card p-4 shadow-lg rounded">
+
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+
+                    <th>DateEmission</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for ordonnance in ordonnances %}
+                <tr>
+                    <td>{{ ordonnance.dateEmission ? ordonnance.dateEmission|date('Y-m-d') : '' }}</td>
+                    <td>
+                        <a href="{{ path('app_ordonnance_show', {'id': ordonnance.id}) }}" class="btn btn-primary btn-sm">Show</a>
+                        <a href="{{ path('app_ordonnance_edit', {'id': ordonnance.id}) }}" class="btn btn-warning btn-sm">Edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">No records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        </div>
+        <a href="{{ path('app_ordonnance_new') }}" class="btn btn-success mt-2">Create new</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ordonnance{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1 class="mb-4">Ordonnance</h1>
+        <div class="card p-4 shadow-lg rounded">
+
+        <table class="table table-striped table-bordered">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ ordonnance.id }}</td>
+                </tr>
+                <tr>
+                    <th>DateEmission</th>
+                    <td>{{ ordonnance.dateEmission ? ordonnance.dateEmission|date('Y-m-d') : '' }}</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+        <a href="{{ path('app_ordonnance_index') }}" class="btn btn-secondary">Back to list</a>
+        <a href="{{ path('app_ordonnance_edit', {'id': ordonnance.id}) }}" class="btn btn-warning">Edit</a>
+        {{ include('ordonnance/_delete_form.html.twig') }}
+    </div>
+{% endblock %}
